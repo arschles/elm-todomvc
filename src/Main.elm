@@ -68,6 +68,7 @@ type alias Entry =
     , completed : Bool
     , editing : Bool
     , id : Int
+    , lastMod: Int
     }
 
 
@@ -86,6 +87,7 @@ newEntry desc id =
     , completed = False
     , editing = False
     , id = id
+    , lastMod = 0 -- this needs to be the current time
     }
 
 
@@ -345,6 +347,7 @@ viewEntry todo =
             , onEnter (EditingEntry todo.id False)
             ]
             []
+        , span [] [ text ("Last modified " ++ printf todo.lastMod) ]
         ]
 
 
